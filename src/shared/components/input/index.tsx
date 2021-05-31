@@ -14,10 +14,11 @@ import { InputContainer, Error, Container } from './style';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label: string;
+  placeholder: string;
   icon?: React.ComponentType<IconBaseProps>;
 }
 
-const Input: React.FC<InputProps> = ({ name, label, icon: Icon, ...rest }) => {
+const Input: React.FC<InputProps> = ({ name, label, placeholder, icon: Icon, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
@@ -44,22 +45,23 @@ const Input: React.FC<InputProps> = ({ name, label, icon: Icon, ...rest }) => {
 
   return (
     <Container>
-    <label htmlFor={name}>{label}</label>
-    <InputContainer isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
-      {Icon && <Icon size={20} />}
-      <input
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
-        defaultValue={defaultValue}
-        ref={inputRef}
-        {...rest}
-      />
-      {error && (
-        <Error title={error}>
-          <FiAlertCircle color="#c53030" size={20} />
-        </Error>
-      )}
-    </InputContainer>
+      <label htmlFor={name}>{label}</label>
+      <InputContainer isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
+        {Icon && <Icon size={20} />}
+        <input
+          placeholder={placeholder}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          defaultValue={defaultValue}
+          ref={inputRef}
+          {...rest}
+        />
+        {error && (
+          <Error title={error}>
+            <FiAlertCircle color="#c53030" size={20} />
+          </Error>
+        )}
+      </InputContainer>
     </Container>
   );
 };

@@ -38,7 +38,7 @@ export const InputContainer = styled.div<ContainerProps>`
     padding: 16px;
     color: var(--color-text-base);
     &::placeholder {
-      color: #666360;
+      color: var(--color-text-base);
     }
   }
   svg {
