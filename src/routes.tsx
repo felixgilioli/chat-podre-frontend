@@ -2,11 +2,13 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import Landing from './pages/landing';
+import Chat from './pages/chat';
 
 function Routes() {
   return (
     <BrowserRouter>
-      <Route path='' exact component={Landing}/>
+      <Route path="/" exact component={Landing}/>
+      <Route path="/chat" component={Chat}/>
     </BrowserRouter>
   )
 }
