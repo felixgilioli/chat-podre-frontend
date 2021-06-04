@@ -17,9 +17,9 @@ function Landing () {
     const name = localStorage.getItem('name');
     const workspace = localStorage.getItem('workspace');
 
-    if(name && workspace) {
+    if (name && workspace) {
 
-      history.push(`chat/${workspace}/${name}`)
+      history.push(`chat/${ workspace }/${ name }`)
     }
   }, [])
 
@@ -27,7 +27,7 @@ function Landing () {
     localStorage.setItem('name', data.name);
     localStorage.setItem('workspace', data.workspace);
 
-    history.push(`chat/${data.workspace}/${data.name}`)
+    history.push(`chat/${ data.workspace }/${ data.name }`)
   }
 
   return (
@@ -41,14 +41,13 @@ function Landing () {
       </HeaderContainer>
       <FormContainer>
         <CustomForm onSubmit={ handleSubmit }>
-          <Input required name="workspace" type="text" label={ "Domínio" } placeholder={"oscabra"}/>
-          <Input required name="name" type="text" label={ "Nome" } placeholder={"pesujo"}/>
+          <Input required name="workspace" type="text" label={ "Domínio" } placeholder={ "oscabra" }/>
+          <Input required name="name" type="text" label={ "Nome" } placeholder={ "pesujo" }/>
           <Button type="submit">Entrar</Button>
         </CustomForm>
       </FormContainer>
     </PageLanding>
   )
 }
-
 
 export default Landing;
