@@ -8,7 +8,7 @@ function Routes() {
   return (
     <BrowserRouter>
       <Route path="/" exact component={Landing}/>
-      <Route path="/chat" component={Chat}/>
+      <Route path="/chat/:workspace/:name" component={Chat}/>
     </BrowserRouter>
   )
 }
