@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { io } from 'socket.io-client';
 
 import Input from '../../shared/components/input';
 
@@ -14,18 +13,21 @@ interface Data {
 function Landing () {
   const history = useHistory();
 
+  useEffect(() => {
+    const name = localStorage.getItem('name');
+    const workspace = localStorage.getItem('workspace');
+
+    if (name && workspace) {
+
+      history.push(`chat/${ workspace }/${ name }`)
+    }
+  }, [])
+
   function handleSubmit (data: Data) {
-    const socket = new WebSocket(`ws://localhost:8080/chat/${data.workspace}/${data.name}`);
-    setTimeout(() => socket.send("a;sdlkjfja;sd"), 2000)
+    localStorage.setItem('name', data.name);
+    localStorage.setItem('workspace', data.workspace);
 
-    // const socket = io("ws://localhost:8080", {
-    //   transports: ["websocket"],
-    //   path: `/chat/${data.workspace}/${data.name}`
-    // });
-    // socket.emit("hello");
-    // socket.send("sfkasdkfs");
-
-    history.push(`chat/${data.workspace}?name=${data.name}`)
+    history.push(`chat/${ data.workspace }/${ data.name }`)
   }
 
   return (
@@ -39,14 +41,13 @@ function Landing () {
       </HeaderContainer>
       <FormContainer>
         <CustomForm onSubmit={ handleSubmit }>
-          <Input required name="workspace" type="text" label={ "Domínio" } placeholder={"oscabra"}/>
-          <Input required name="name" type="text" label={ "Nome" } placeholder={"pesujo"}/>
+          <Input required name="workspace" type="text" label={ "Domínio" } placeholder={ "oscabra" }/>
+          <Input required name="name" type="text" label={ "Nome" } placeholder={ "pesujo" }/>
           <Button type="submit">Entrar</Button>
         </CustomForm>
       </FormContainer>
     </PageLanding>
   )
 }
-
 
 export default Landing;

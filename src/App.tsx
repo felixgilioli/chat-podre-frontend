@@ -1,3 +1,5 @@
+import './App.css';
+
 import Routes from './routes';
 import './assets/style/global.css';
 
