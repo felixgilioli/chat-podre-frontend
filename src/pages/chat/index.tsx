@@ -4,9 +4,9 @@ import { Container} from './styles'
 
 function Chat() {
 
-  return <Container>
+  return (<Container>
     <h1>TEsteee</h1>
-  </Container>
+  </Container>)
 }
 
 export default Chat;
